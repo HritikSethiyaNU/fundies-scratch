@@ -10,9 +10,9 @@ above(rectangle(50, 20, "solid", "green"),
 rotate(45, rectangle(100, 20, "solid", "red"))
 rotate(90, rectangle(100, 20, "solid", "red"))
 
-img = overlay(regular-polygon(37, 6, "solid", "red"),
-  regular-polygon(40, 6, "solid", "white"))
+img1 = overlay(regular-polygon(55, 6, "solid", "red"),
+  regular-polygon(60, 6, "solid", "white"))
 
-str = text("STOP", 15, "white")
-
+str = text("STOP", 29, "white")
+img = overlay(img1, regular-polygon(61, 6, "solid", "black") )
 overlay(str, img)
