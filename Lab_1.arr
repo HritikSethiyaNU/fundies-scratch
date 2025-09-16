@@ -31,19 +31,21 @@ perimeter * 0.10
 # 3
 "Question - 3"
 
-base = rectangle(60, 180, "solid", "black")
-
+base = rectangle(60, 140, "solid", "black")
+pole = rectangle(15, 200, "solid", "black")
 stop = circle(20, "solid", "red")
 go = circle(20, "solid","green")
 caution = circle(20, "solid","yellow")
 
 #Using above to align the traffic singals properly
 overlay_func1 = above(stop, caution)
-overlay_function_final = above(overlay_func1, go)
+overlay_func2 = above(overlay_func1, go)
 
 
 #Using overlay - align to ceter the singals in the middle of the rectangular base 
-overlay-align("center", "middle", overlay_function_final, base)
+Signal = overlay-align("center", "middle", overlay_func2, base)
+below(pole, Signal)
+
 
 "Question - 4"
 
