@@ -67,8 +67,8 @@ beside(step1, blueRectangle)
 
 #Shield
 blackSquare = rotate(45, square(60, "solid", "black"))
-blueSquare = rotate(45, square(55, "solid", "blue"))
-whiteSquare = rotate(45, square(50, "solid", "white")) 
+blueSquare = rotate(45, square(50, "solid", "blue"))
+whiteSquare = rotate(45, square(40, "solid", "white")) 
 
 step2 = overlay(blueSquare, blackSquare)
 Shield = overlay(whiteSquare, step2)
