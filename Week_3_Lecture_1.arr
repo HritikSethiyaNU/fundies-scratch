@@ -86,5 +86,28 @@ fun choose-hat-or-visor(temp-in-C :: Number, has-visor :: Boolean) -> String:
 end 
 
 
-choose-hat-or-visor(45, true)
+choose-hat-or-visor(45, false)
+
+
+# Create a function and enter the marks and based on the condition output the grade  
+
+
+fun Grader(mark :: Number) -> String:
+  doc: "Takes the student's mark as input and outputs his grade depending on his result"
+  
+  
+  if mark >= 70:
+    "A"
+  else if mark >= 60:
+    "B"
+  else if mark >= 50:
+    "C"
+  else:
+    "F"
+  end 
+  
+end 
+
+Grader(67)
+
 
