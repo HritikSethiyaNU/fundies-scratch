@@ -136,12 +136,14 @@ median(something, "rate")
 modes(something, "rate")
 
 #Ascending and descending order
-"Ascending Order"
-order-by(something, "rate", true)
+"Lowest rate:"
+ascend = order-by(something, "rate", true)
+ascend.row-n(0)["rate"]
 
 
-"Descending Order"
-order-by(something, "rate", false)
+"Highest rate:"
+descend = order-by(something, "rate", false)
+descend.row-n(0)["rate"]
 
   
   
