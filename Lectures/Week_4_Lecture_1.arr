@@ -82,7 +82,6 @@ placesAscend = order-by(Places, "Location", true)
 freq-bar-chart(Places, "Location",)
 
 
-
   
     
   
