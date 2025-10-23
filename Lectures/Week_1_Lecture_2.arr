@@ -2,7 +2,7 @@ use context starter2024
 overlay(circle(50, "solid", "blue"), rectangle(70, 20, "solid", "yellow"))
 
 
-string-to-upper("hello c2000")  
+string-to-upper("hello cs2000")  
   
 above(rectangle(50, 20, "solid", "green"), 
     rectangle(70, 30, "solid", "purple"))
