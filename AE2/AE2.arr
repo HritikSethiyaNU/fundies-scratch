@@ -55,22 +55,26 @@ penguinData-envChecked = penguinData.add-column("Env-Suitable", env-suitablity)
 #Transformation 
 
 
-# Calculating the bill volume of each penguin 
+# Categorizing penguins by body mass into: light, medium, and heavy instead of their mass in grams 
 
-
-fun bill-volume(r :: Row) -> Number:
-  doc: "Finding bill-volume by mulitiplying 0.5 to the product of bill length and bill depth"
-
-  (r["bill_depth_mm"]) * (r["bill_length_mm"]) * 0.5
-
+fun mass-category(mass :: Number) -> String:
+  if mass < 4000:
+    "light"
+  else if mass <= 5000:
+    "medium"
+  else:
+    "heavy"
+  end
   
 where:
-  bill-volume(penguinData.row-n(4)) is 404.79
-  bill-volume(penguinData.row-n(207)) is 317.615
-  bill-volume(penguinData.row-n(300)) is 399
-end
+  mass-category(3500) is "light"
+  mass-category(4332) is "medium"
+  mass-category(6215) is "heavy"
+  
+end 
 
-penguinData-with-billVol = build-column(penguinData-envChecked, "Bill Volume", bill-volume)
+penguinData-with-mass-categories = transform-column(penguinData, "body_mass_g", mass-category)
+penguinData-with-mass-categories
 
 # Selection 
 
@@ -138,3 +142,4 @@ Sexual-Dismorphism-Outliers
 
 
 # Accumulation 
+
