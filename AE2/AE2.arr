@@ -142,4 +142,50 @@ Sexual-Dismorphism-Outliers
 
 
 # Accumulation 
+# Calculating the BMI for every 
 
+fun BMI-calculator(r :: Row) -> Number:
+  r["body_mass_g"] / r["flipper_length_mm"]
+end 
+
+penguinData-with-BMI = build-column(penguinData, "BMI", BMI-calculator)
+
+
+
+
+# Creating a new table for each specie and then calculating thier average BMI serpately 
+# Gentoo Penguins 
+GentooPenguins-BMI = filter-with(penguinData-with-BMI, lam(o): o["species"] == "Gentoo" end)
+
+GentooPenguins-with-BMI = extract body_mass_g from GentooPenguins-BMI end
+
+GentooPenguins-BMI-avg = s.mean(GentooPenguins-with-BMI)
+
+# Chinstrap Penguins 
+ChinstrapPenguins-BMI = filter-with(penguinData-with-BMI, lam(o): o["species"] == "Chinstrap" end)
+
+ChinstrapPenguins-with-BMI = extract body_mass_g from ChinstrapPenguins-BMI end
+
+ChinstrapPenguins-BMI-avg = s.mean(ChinstrapPenguins-with-BMI)
+
+#Adelie Penguins 
+AdeliePenguins-BMI = filter-with(penguinData-with-BMI, lam(o): o["species"] == "Adelie" end)
+
+AdeliePenguins-with-BMI = extract body_mass_g from AdeliePenguins-BMI end
+
+AdeliePenguins-BMI-avg = s.mean(AdeliePenguins-with-BMI)
+
+# Printing the averages in a tabled format 
+
+BMI-ratio-table = table: Species :: String, Average_BMI :: Number
+  row: "Adelie", AdeliePenguins-BMI-avg
+  row: "Gentoo", GentooPenguins-BMI-avg 
+  row: "Chinstrap", ChinstrapPenguins-BMI-avg
+end 
+
+BMI-ratio-table 
+    
+ 
+ 
+    
+    
