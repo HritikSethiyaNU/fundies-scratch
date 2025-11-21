@@ -37,9 +37,9 @@ fun env-suitable(mass :: Number) -> Boolean:
   mass >= 3500
   
 where:
-    env-suitable(3800) is true # from row: 1
-    env-suitable(3200) is false # from row: 7
-    env-suitable(4400) is true # from row: 14
+  env-suitable(3800) is true # from row: 1
+  env-suitable(3200) is false # from row: 7
+  env-suitable(4400) is true # from row: 14
  
 end
 
@@ -50,6 +50,23 @@ env-suitablity = map(env-suitable, penguinData.get-column("body_mass_g"))
 #Adding the new coloumn to a new table so that the data can be called easily, and differentiated whenever from the old data
 
 penguinData-envChecked = penguinData.add-column("Env-Suitable", env-suitablity)
+
+
+#Bar chart 
+fun env-suitable-per-species(r :: Row) -> String:
+  doc: "Checks if the value in env-suitable is true and if so add the specie name to it" 
+  
+  if r["Env-Suitable"] == true:
+    r["species"] + "-true"
+  else:
+    r["species"] + "-false"
+  end 
+end
+
+penguinData-envChecked-perSpecies = build-column(penguinData-envChecked,"Env-Suitability-PerSpecies", env-suitable-per-species)
+
+
+freq-bar-chart(penguinData-envChecked-perSpecies, "Env-Suitability-PerSpecies")
 
 
 #Transformation 
@@ -76,21 +93,31 @@ end
 penguinData-with-mass-categories = transform-column(penguinData, "body_mass_g", mass-category)
 penguinData-with-mass-categories
 
-# Selection 
-
-# Selecting Elite swimmer based on: filtering penguins with flipper length > 205 mm and body mass > 4500g 
-
+#Bar-Chart
+fun Mass-categories(r :: Row) -> String:
+  doc: "Checks if the value in body_mass_g is light, medium or heavy and if so add the species name to it" 
   
-elitePenguinData = filter-with(penguinData, lam(x): if (x["flipper_length_mm"] > 205) and (x["body_mass_g"] > 4500): true else: false end end)
+  if r["body_mass_g"] == "light":
+    r["species"] + "-light"
+  else if r["body_mass_g"] == "medium":
+    r["species"] + "-medium"
+  else:
+    r["species"] + "-heavy"
+  end 
+end
 
-elitePenguinData
+penguinData-massCategory-perSpecies = build-column(penguinData-with-mass-categories,"MassCategory-PerSpecies", Mass-categories)
 
-# Selection - 2
 
+freq-bar-chart(penguinData-massCategory-perSpecies, "MassCategory-PerSpecies")
+
+
+# Selection 
 # Identifying sexual dimorphism outliers 
 
 
 # Making a new table for each species of penguins in the dataset 
+
 GentooPenguins = filter-with(penguinData, lam(o): o["species"] == "Gentoo" end)
 ChinstrapPenguins = filter-with(penguinData, lam(o): o["species"] == "Chinstrap" end)
 AdeliePenguins = filter-with(penguinData, lam(o): o["species"] == "Adelie" end)
