@@ -23,7 +23,7 @@ penguinData = load-table:
   sanitize flipper_length_mm using num-sanitizer 
   sanitize body_mass_g using num-sanitizer 
 end 
-penguinData
+
 
 
 # Scalar Processing 
@@ -162,12 +162,10 @@ where:
   SD-outliers(penguinData.row-n(45)) is true
 end 
 
-penguinData.row-n(6)
-penguinData.row-n(115)
-penguinData.row-n(45)
-GentooPenguins-mass-avg
-ChinstrapPenguins-mass-avg
-Penguins-mass-avg
+#Addition information for the report: 
+"Gentoo Penguins Mean Mass:" + num-to-string(GentooPenguins-mass-avg)
+"Chinstrap Penguins Mean Mass:" + num-to-string(ChinstrapPenguins-mass-avg)
+"Adelie Penguins Mean Mass:" + num-to-string(AdeliePenguins-mass-avg)
 
 # Using filter-with to make a new table of all sexual dismorphism outliers 
 Sexual-Dismorphism-Outliers = filter-with(penguinData, SD-outliers)
@@ -175,7 +173,7 @@ Sexual-Dismorphism-Outliers
 
 
 # Accumulation 
-# Calculating the BMI for every 
+# Calculating the BMI for each of the penguin speices 
 
 fun BMI-calculator(r :: Row) -> Number:
   r["body_mass_g"] / r["flipper_length_mm"]
