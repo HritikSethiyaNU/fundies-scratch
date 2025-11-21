@@ -162,6 +162,12 @@ where:
   SD-outliers(penguinData.row-n(45)) is true
 end 
 
+penguinData.row-n(6)
+penguinData.row-n(115)
+penguinData.row-n(45)
+GentooPenguins-mass-avg
+ChinstrapPenguins-mass-avg
+Penguins-mass-avg
 
 # Using filter-with to make a new table of all sexual dismorphism outliers 
 Sexual-Dismorphism-Outliers = filter-with(penguinData, SD-outliers)
